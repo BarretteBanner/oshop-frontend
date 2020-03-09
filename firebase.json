@@ -3,11 +3,7 @@
     {
       "target": "oshop-dashboard",
       "public": "dist/oshop-dashboard",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
           "source": "**",
