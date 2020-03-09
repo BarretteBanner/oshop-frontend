@@ -1,15 +1,5 @@
 {
-  "hosting": [
-    {
-      "target": "oshop-dashboard",
-      "public": "dist/oshop-dashboard",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
-    }
-  ]
+  "hosting": {
+    "public": "dist/oshop-dashboard"
+  }
 }
