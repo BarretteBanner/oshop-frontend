@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "oshop-b45eb": {
+      "hosting": {
+        "oshop-dashboard": [
+          "oshop-b45eb"
+        ]
+      }
+    }
+  }
+}
