@@ -4,8 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-admin-orders',
   templateUrl: './admin-orders.component.html'
 })
-export class AdminOrdersComponent {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class AdminOrdersComponent {}

@@ -4,8 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-check-out',
   templateUrl: './check-out.component.html'
 })
-export class CheckOutComponent {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class CheckOutComponent {}

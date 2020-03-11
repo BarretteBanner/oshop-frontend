@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html'
 })
-export class ShoppingCartComponent {
-  constructor() {}
-}
+export class ShoppingCartComponent {}

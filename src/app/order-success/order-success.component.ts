@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-order-success',
   templateUrl: './order-success.component.html'
 })
-export class OrderSuccessComponent {
-  constructor() {}
-}
+export class OrderSuccessComponent {}
