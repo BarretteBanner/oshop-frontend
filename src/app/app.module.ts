@@ -4,7 +4,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
