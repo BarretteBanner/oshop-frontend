@@ -6,9 +6,9 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
-  constructor(public auth: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   login() {
-    this.auth.login();
+    this.authService.login();
   }
 }

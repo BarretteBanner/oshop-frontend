@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<firebase.User>;
+  userObservable: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth) {
-    this.user$ = afAuth.authState;
+    this.userObservable = afAuth.authState;
   }
 
   login() {

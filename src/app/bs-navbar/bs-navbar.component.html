@@ -22,7 +22,7 @@
         </li>
       </ng-template>
       <li
-        *ngIf="auth.user$ | async as user; else annonymousUser"
+        *ngIf="authService.userObservable | async as user; else annonymousUser"
         class="nav-item dropdown"
         ngbDropdown
       >
