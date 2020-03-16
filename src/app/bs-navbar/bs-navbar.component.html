@@ -22,7 +22,7 @@
         </li>
       </ng-template>
       <li
-        *ngIf="authService.userObservable | async as user; else annonymousUser"
+        *ngIf="userObservable | async as user; else annonymousUser"
         class="nav-item dropdown"
         ngbDropdown
       >
@@ -33,16 +33,18 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-          >{{ user.displayName }}</a
+          >{{ user.name }}</a
         >
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" routerLink="my-orders">My Orders</a>
-          <a class="dropdown-item" routerLink="admin/admin-orders"
-            >Manage Orders</a
-          >
-          <a class="dropdown-item" routerLink="admin/admin-products"
-            >Manage Products</a
-          >
+          <ng-container *ngIf="user.isAdmin">
+            <a class="dropdown-item" routerLink="admin/admin-orders"
+              >Manage Orders</a
+            >
+            <a class="dropdown-item" routerLink="admin/admin-products"
+              >Manage Products</a
+            >
+          </ng-container>
           <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </li>

@@ -40,7 +40,7 @@ const appRoutes: Routes = [
   {
     path: 'my-orders',
     component: MyOrdersComponent,
-    canActivate: [AuthGuardService, AdminAuthGuardService]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/admin-products',

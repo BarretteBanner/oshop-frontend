@@ -16,7 +16,7 @@ export class AppComponent implements OnDestroy {
     router: Router,
     private userService: UserService
   ) {
-    this.authServiceSubscription = authService.userObservable.subscribe(
+    this.authServiceSubscription = authService.firebaseUserObservable.subscribe(
       user => {
         if (user) {
           userService.save(user);
