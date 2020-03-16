@@ -21,6 +21,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { UserService } from './user.service';
+import { AdminAuthGuardService } from './admin-auth-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -39,17 +40,17 @@ const appRoutes: Routes = [
   {
     path: 'my-orders',
     component: MyOrdersComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, AdminAuthGuardService]
   },
   {
     path: 'admin/admin-products',
     component: AdminProductsComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, AdminAuthGuardService]
   },
   {
     path: 'admin/admin-orders',
     component: AdminOrdersComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, AdminAuthGuardService]
   },
   { path: 'login', component: LoginComponent }
 ];
@@ -76,7 +77,12 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgbModule
   ],
-  providers: [AuthService, AuthGuardService, UserService],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    UserService,
+    AdminAuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
