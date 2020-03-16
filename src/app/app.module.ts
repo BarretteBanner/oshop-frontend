@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
+import { UserService } from './user.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -75,7 +76,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgbModule
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

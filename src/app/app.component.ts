@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,16 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnDestroy {
   authServiceSubscription: Subscription;
 
-  constructor(private authService: AuthService, router: Router) {
+  constructor(
+    private authService: AuthService,
+    router: Router,
+    private userService: UserService
+  ) {
     this.authServiceSubscription = authService.userObservable.subscribe(
       user => {
         if (user) {
+          userService.save(user);
+
           let returnUrl = localStorage.getItem('returnUrl');
           router.navigateByUrl(returnUrl);
         }
