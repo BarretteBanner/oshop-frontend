@@ -1,30 +1,94 @@
-<form>
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" id="title" class="form-control" />
+<div class="row">
+  <div class="col-md-6">
+    <form #form="ngForm" (ngSubmit)="save(form.value)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          required
+          #title="ngModel"
+          ngModel
+          name="title"
+          type="text"
+          id="title"
+          class="form-control"
+        />
+        <div *ngIf="title.touched && title.invalid" class="alert alert-danger">
+          Title is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+          <input
+            required
+            #price="ngModel"
+            ngModel
+            name="price"
+            type="number"
+            id="price"
+            class="form-control"
+          />
+        </div>
+        <div *ngIf="price.touched && price.invalid" class="alert alert-danger">
+          Price is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select
+          required
+          #category="ngModel"
+          ngModel
+          name="category"
+          id="category"
+          class="form-control"
+        >
+          <option value=""></option>
+          <option
+            *ngFor="let category of categoriesObservable | async"
+            [value]="category.name"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="category.touched && category.invalid"
+          class="alert alert-danger"
+        >
+          Category is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input
+          required
+          #imageUrl="ngModel"
+          ngModel
+          name="imageUrl"
+          type="text"
+          id="imageUrl"
+          class="form-control"
+        />
+        <div
+          *ngIf="imageUrl.touched && imageUrl.invalid"
+          class="alert alert-danger"
+        >
+          Image URL is required.
+        </div>
+      </div>
+      <button [disabled]="form.invalid" class="btn btn-primary">Save</button>
+    </form>
   </div>
-  <div class="form-group">
-    <label for="price">Price</label>
-    <div class="input-group-prepend">
-      <span class="input-group-text">$</span>
-      <input type="number" id="price" class="form-control" />
+  <div class="col-md-6">
+    <div class="card" style="width: 18rem;">
+      <img [src]="imageUrl.value" class="card-img-top" />
+      <div class="card-body">
+        <h5 class="card-title">{{ title.value }}</h5>
+        <p class="card-text">
+          {{ price.value | currency: 'USD':true }}
+        </p>
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <label for="category">Category</label>
-    <select id="category" class="form-control">
-      <option value=""></option>
-      <option
-        *ngFor="let category of categoriesObservable | async"
-        [value]="category.$key"
-      >
-        {{ category.name }}
-      </option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="imageUrl">Image URL</label>
-    <input type="text" id="imageUrl" class="form-control" />
-  </div>
-  <button class="btn btn-primary">Save</button>
-</form>
+</div>
