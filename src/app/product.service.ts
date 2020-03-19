@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Product } from './models/product';
+import { map } from 'rxjs/operators';
+import { documentToDomainObject } from 'src/app/utils/firebase/firebaseUtils';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +12,29 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class ProductService {
   constructor(private database: AngularFireDatabase) {}
 
-  create(product) {
-    return this.database.list('/products').push(product);
+  create(product): void {
+    this.database.list('/products').push(product);
+  }
+
+  getAll(): Observable<[Product]> {
+    return this.database
+      .list('/products')
+      .snapshotChanges()
+      .pipe(map(actions => actions.map(documentToDomainObject) as [Product]));
+  }
+
+  get(productId): Observable<Product> {
+    return this.database
+      .object('/products/' + productId)
+      .valueChanges()
+      .pipe(take(1)) as Observable<Product>;
+  }
+
+  update(productId, product): void {
+    this.database.object('/products/' + productId).update(product);
+  }
+
+  delete(productId): void {
+    this.database.object('/products/' + productId).remove();
   }
 }
