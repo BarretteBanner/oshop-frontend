@@ -28,6 +28,7 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './shopping-cart.service';
 
 const appRoutes: Routes = [
   { path: '', component: ProductsComponent },
@@ -103,7 +104,8 @@ const appRoutes: Routes = [
     UserService,
     AdminAuthGuardService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

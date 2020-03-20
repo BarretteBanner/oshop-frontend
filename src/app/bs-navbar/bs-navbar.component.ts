@@ -1,18 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Subscription, Observable } from 'rxjs';
 import { User } from '../models/user';
+import { ShoppingCartService } from '../shopping-cart.service';
 @Component({
   selector: 'app-bs-navbar',
   templateUrl: './bs-navbar.component.html',
   styleUrls: ['./bs-navbar.component.scss']
 })
-export class BsNavbarComponent {
+export class BsNavbarComponent implements OnInit {
   userObservable: Observable<User>;
-  constructor(private authService: AuthService) {
-    this.userObservable = authService.userObservable;
-  }
+  cartObservable;
+  subscription: Subscription;
+  shoppingCartItemCount: number;
+  constructor(
+    private authService: AuthService,
+    private shoppingCartService: ShoppingCartService
+  ) {}
   logout() {
     this.authService.logout();
+  }
+
+  ngOnInit() {
+    this.userObservable = this.authService.userObservable;
+
+    this.subscription = this.shoppingCartService.getCart().subscribe(cart => {
+      this.shoppingCartItemCount = 0;
+      for (let productId in cart.items)
+        this.shoppingCartItemCount += cart.items[productId].quantity;
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
