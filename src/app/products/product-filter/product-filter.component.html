@@ -1,0 +1,19 @@
+<div class="sticky-top">
+  <div class="list-group">
+    <a
+      class="list-group-item list-group-item-action"
+      [class.active]="!categorySelected"
+      routerLink="/"
+      >All Categories</a
+    >
+    <a
+      *ngFor="let category of categoryObservable | async"
+      routerLink="/"
+      [queryParams]="{ category: category.id }"
+      class="list-group-item list-group-item-action"
+      [class.active]="categorySelected === category.id"
+    >
+      {{ category.name }}
+    </a>
+  </div>
+</div>
