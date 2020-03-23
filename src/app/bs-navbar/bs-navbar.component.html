@@ -16,9 +16,11 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="shopping-cart"
           >Shopping Cart
-          <span class="badge badge-warning badge-pill">{{
-            shoppingCartItemCount
-          }}</span></a
+          <span
+            *ngIf="cartObservable | async as cart"
+            class="badge badge-warning badge-pill"
+            >{{ cart.totalItemsCount }}</span
+          ></a
         >
       </li>
       <ng-template #annonymousUser>

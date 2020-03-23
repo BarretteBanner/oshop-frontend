@@ -4,6 +4,7 @@ import { Product } from './models/product';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ShoppingCart } from './models/shoppingCart';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class ShoppingCartService {
     let cartId = this.getOrCreateCartId();
     return this.database
       .object('/shopping-carts/' + cartId)
-      .valueChanges() as Observable<ShoppingCart>;
+      .valueChanges()
+      .pipe(map((cart: any) => new ShoppingCart(cart.items)));
   }
 
   private getOrCreateCartId() {
